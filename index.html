@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3ed">
+  <meta name="description" content="Interactive tools for planning a move to Europe.">
+  <title>Europe Move Tools</title>
+  <style>
+    :root { color-scheme: light; --paper:#f6f3ed; --ink:#1b2a34; --muted:#53616b; --line:#d8dcd7; --card:#fffdf8; --accent:#b46b48; --accent-dark:#8a442d; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:var(--paper); font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.5; }
+    body::before { content:""; position:absolute; z-index:-1; inset:0 0 auto; height:620px; background:radial-gradient(ellipse 58% 70% at 85% 18%,#e6ded1 0%,transparent 78%),radial-gradient(ellipse 65% 70% at 8% 0%,#e5eadd 0%,transparent 78%); pointer-events:none; }
+    .wrap { width:min(1080px,calc(100% - 48px)); margin:auto; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:27px 0; border-bottom:1px solid var(--line); }
+    .brand { display:inline-flex; gap:10px; align-items:center; font-weight:750; letter-spacing:-.02em; text-decoration:none; color:var(--ink); }
+    .brand-mark { display:grid; place-items:center; width:34px; height:34px; border-radius:11px; background:var(--ink); color:#fff; font-size:19px; font-weight:500; }
+    .header-label { color:var(--muted); font-size:13px; }
+    main { padding:72px 0 100px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; margin:0 0 18px; color:var(--accent-dark); font-size:12px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
+    .eyebrow::before { content:""; width:26px; height:1px; background:currentColor; }
+    h1 { max-width:850px; margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(48px,8vw,92px); line-height:1.03; font-weight:500; letter-spacing:-.052em; }
+    .hero { max-width:760px; color:var(--muted); font-size:clamp(16px,2vw,20px); margin:25px 0 0; }
+    .rule { margin:75px 0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    h2 { font-size:13px; font-weight:750; letter-spacing:.11em; text-transform:uppercase; margin:0; }
+    .count { color:var(--muted); font-size:13px; }
+    .tool { display:grid; grid-template-columns:minmax(0,1fr) 280px; overflow:hidden; min-height:320px; background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:0 18px 50px rgba(36,49,47,.055); text-decoration:none; color:inherit; transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease; }
+    .tool:hover { transform:translateY(-4px); box-shadow:0 22px 52px rgba(36,49,47,.1); border-color:#b9c2b8; }
+    .tool:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    .tool-copy { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; align-items:flex-start; }
+    .tool-kicker { font-size:12px; font-weight:750; text-transform:uppercase; letter-spacing:.12em; color:var(--accent-dark); }
+    h3 { font-family:Georgia,"Times New Roman",serif; font-size:clamp(32px,4vw,46px); line-height:1.1; letter-spacing:-.035em; font-weight:500; margin:22px 0 14px; }
+    .tool-copy p { max-width:530px; margin:0; color:var(--muted); font-size:16px; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin:27px 0 30px; }
+    .tags span { border:1px solid var(--line); border-radius:100px; color:var(--muted); padding:6px 11px; font-size:12px; }
+    .open { margin-top:auto; display:inline-flex; align-items:center; gap:12px; font-size:14px; font-weight:750; color:var(--accent-dark); }
+    .arrow { display:grid; place-items:center; border:1px solid currentColor; width:28px; height:28px; border-radius:50%; font-size:17px; transition:transform .2s ease; }
+    .tool:hover .arrow { transform:translateX(4px); }
+    .tool-art { position:relative; overflow:hidden; display:flex; align-items:end; padding:28px; background:linear-gradient(150deg,#dce6df 0%,#e7e1d2 55%,#e5d5be 100%); border-left:1px solid var(--line); }
+    .sun { position:absolute; width:105px; height:105px; border-radius:50%; background:#e2a65f; right:37px; top:37px; box-shadow:0 0 0 17px #e2a65f24; }
+    .hill { position:absolute; width:410px; height:250px; border-radius:50%; left:-105px; bottom:-167px; background:#728d81; transform:rotate(-14deg); }
+    .hill.two { left:78px; bottom:-187px; background:#426b66; transform:rotate(16deg); }
+    .art-label { position:relative; z-index:1; color:#fff; text-shadow:0 1px 4px #253e3b88; font-size:12px; font-weight:750; letter-spacing:.11em; text-transform:uppercase; }
+    footer { border-top:1px solid var(--line); padding:24px 0 34px; color:var(--muted); font-size:13px; }
+    @media(max-width:700px) { .wrap { width:min(100% - 32px,1080px); } header { padding:19px 0; } .header-label { display:none; } main { padding:56px 0 70px; } .rule { margin-top:62px; } .tool { grid-template-columns:1fr; } .tool-art { min-height:170px; border-left:0; border-top:1px solid var(--line); } .tool-copy { padding:28px; } .tags { margin-bottom:28px; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html" aria-label="Europe Move Tools home"><span class="brand-mark" aria-hidden="true">↗</span><span>Europe Move Tools</span></a>
+      <span class="header-label">A small collection for big decisions</span>
+    </header>
+    <main>
+      <p class="eyebrow">Explore the possibilities</p>
+      <h1>Europe Move<br>Tools<span style="color:var(--accent)">.</span></h1>
+      <p class="hero">A home for interactive comparisons that make planning a move to Europe a little clearer.</p>
+      <div class="rule"><h2>Explore the tools</h2><span class="count">01 / Climate</span></div>
+      <a class="tool" href="climate-comparison.html" aria-label="Open the monthly climate comparison">
+        <div class="tool-copy">
+          <span class="tool-kicker">01 / Weather &amp; seasons</span>
+          <h3>Monthly climate comparison</h3>
+          <p>See how sunshine, rainy days, temperature, and snow change through the year in six cities, with Toronto as a familiar baseline.</p>
+          <div class="tags" aria-hidden="true"><span>Barcelona</span><span>Milan</span><span>Zürich</span><span>Amsterdam</span><span>Madrid</span><span>Toronto</span></div>
+          <span class="open">Explore climate <span class="arrow" aria-hidden="true">→</span></span>
+        </div>
+        <div class="tool-art" aria-hidden="true"><div class="sun"></div><div class="hill"></div><div class="hill two"></div><span class="art-label">Six cities · Twelve months</span></div>
+      </a>
+    </main>
+    <footer>Europe Move Tools</footer>
+  </div>
+</body>
+</html>
