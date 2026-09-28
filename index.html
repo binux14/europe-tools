@@ -25,6 +25,7 @@
     .rule { margin:75px 0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
     h2 { font-size:13px; font-weight:750; letter-spacing:.11em; text-transform:uppercase; margin:0; }
     .count { color:var(--muted); font-size:13px; }
+    .tool + .tool { margin-top:18px; }
     .tool { display:grid; grid-template-columns:minmax(0,1fr) 280px; overflow:hidden; min-height:320px; background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:0 18px 50px rgba(36,49,47,.055); text-decoration:none; color:inherit; transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease; }
     .tool:hover { transform:translateY(-4px); box-shadow:0 22px 52px rgba(36,49,47,.1); border-color:#b9c2b8; }
     .tool:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
@@ -57,7 +58,7 @@
       <p class="eyebrow">Explore the possibilities</p>
       <h1>Europe Move<br>Tools<span style="color:var(--accent)">.</span></h1>
       <p class="hero">A home for interactive comparisons that make planning a move to Europe a little clearer.</p>
-      <div class="rule"><h2>Explore the tools</h2><span class="count">01 / Climate</span></div>
+      <div class="rule"><h2>Explore the tools</h2><span class="count">02 tools</span></div>
       <a class="tool" href="climate-comparison.html" aria-label="Open the monthly climate comparison">
         <div class="tool-copy">
           <span class="tool-kicker">01 / Weather &amp; seasons</span>
@@ -67,6 +68,16 @@
           <span class="open">Explore climate <span class="arrow" aria-hidden="true">→</span></span>
         </div>
         <div class="tool-art" aria-hidden="true"><div class="sun"></div><div class="hill"></div><div class="hill two"></div><span class="art-label">Six cities · Twelve months</span></div>
+      </a>
+      <a class="tool" href="cost-of-living.html" aria-label="Open the cost of living comparison">
+        <div class="tool-copy">
+          <span class="tool-kicker">02 / Money &amp; housing</span>
+          <h3>Cost of living comparison</h3>
+          <p>Compare a two income household budget, two bedroom rent, food, Maple’s routine care, medical costs, and disposable income across the same six cities.</p>
+          <div class="tags" aria-hidden="true"><span>Editable salaries</span><span>Toronto baseline</span><span>Local or CAD</span></div>
+          <span class="open">Explore budgets <span class="arrow" aria-hidden="true">→</span></span>
+        </div>
+        <div class="tool-art" style="background:linear-gradient(145deg,#e6e9dc,#e9d7c2)" aria-hidden="true"><div class="sun" style="background:#b9d2ad;box-shadow:0 0 0 17px #b9d2ad42"></div><div class="hill" style="background:#a98168"></div><div class="hill two" style="background:#345d5b"></div><span class="art-label">Six cities · One household</span></div>
       </a>
     </main>
     <footer>Europe Move Tools</footer>
